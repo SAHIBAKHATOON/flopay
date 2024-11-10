@@ -218,11 +218,11 @@
         let parsedData = {};
         for (let p in txData.parsedFloData)
             parsedData[p] = txData.parsedFloData[p];
-        parsedData.sender = txData.transactionDetails.vin[0].addr;
-        for (let vout of txData.transactionDetails.vout)
+        parsedData.sender = txData.transactionDetails?.vin[0].addr;
+        for (let vout of txData.transactionDetails?.vout ?? [])
             if (vout.scriptPubKey.addresses[0] !== parsedData.sender)
                 parsedData.receiver = vout.scriptPubKey.addresses[0];
-        parsedData.time = txData.transactionDetails.time;
+        parsedData.time = txData.transactionDetails?.time??'';
         return parsedData;
     }
 
